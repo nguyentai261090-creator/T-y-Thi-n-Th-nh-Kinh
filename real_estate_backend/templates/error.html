@@ -1,0 +1,3 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}<section class="panel error-panel"><p class="eyebrow">SYSTEM MESSAGE</p><h1>{{ title }}</h1><p>{{ message }}</p><a class="button" href="{{ url_for('dashboard') }}">Quay lại trang tổng quan</a></section>{% endblock %}

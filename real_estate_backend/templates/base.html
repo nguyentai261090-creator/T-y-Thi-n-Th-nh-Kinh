@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Real Estate Ledger{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark">RE</span><span>Real Estate Ledger<small>Property & Rental Management</small></span></a>
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Tổng quan</a>
+      <a href="{{ url_for('properties') }}">Bất động sản</a>
+      <a href="{{ url_for('financial') }}">Tài chính</a>
+      <a href="{{ url_for('maintenance_list') }}">Bảo trì</a>
+    </nav>
+  </header>
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}<div class="flash-stack">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer>Đồ án Cơ sở dữ liệu · Tây Thiên Thỉnh Kinh · 4.4 System Integration</footer>
+</body>
+</html>

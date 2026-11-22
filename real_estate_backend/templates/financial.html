@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Báo cáo tài chính | Real Estate Ledger{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">FINANCIAL REPORT</p><h1>Báo cáo tài chính</h1><p class="muted">Dữ liệu tổng hợp từ View <code>vw_property_financial_summary</code>.</p></div></section>
+<section class="stats-grid finance-cards">
+ <article class="stat-card wide"><span>Tổng thu</span><strong>{{ totals.total_income|vnd }}</strong></article>
+ <article class="stat-card wide"><span>Tổng chi</span><strong>{{ totals.total_expense|vnd }}</strong></article>
+ <article class="stat-card wide"><span>Dòng tiền ròng</span><strong>{{ totals.net_cashflow|vnd }}</strong></article>
+</section>
+<section class="panel"><div class="panel-heading"><div><p class="eyebrow">PROPERTY CASH FLOW</p><h2>Chi tiết theo bất động sản</h2></div></div>
+ {% if rows %}<div class="table-wrap"><table><thead><tr><th>Mã BĐS</th><th>Tên bất động sản</th><th>Chủ nhà</th><th>Số giao dịch</th><th>Tổng thu</th><th>Tổng chi</th><th>Dòng tiền ròng</th></tr></thead><tbody>{% for r in rows %}<tr><td>#{{ r.property_id }}</td><td>{{ r.property_title }}</td><td>{{ r.landlord_name }}</td><td>{{ r.total_transactions }}</td><td class="money">{{ r.total_income|vnd }}</td><td class="money">{{ r.total_expense|vnd }}</td><td class="money strong">{{ r.net_cashflow|vnd }}</td></tr>{% endfor %}</tbody></table></div><p class="table-note">Hiển thị tối đa 100 bất động sản, sắp xếp theo dòng tiền ròng giảm dần.</p>{% else %}<p class="empty">Chưa có dữ liệu tài chính.</p>{% endif %}
+</section>
+{% endblock %}

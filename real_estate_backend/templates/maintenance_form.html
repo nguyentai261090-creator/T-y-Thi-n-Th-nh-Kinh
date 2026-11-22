@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Tạo yêu cầu bảo trì | Real Estate Ledger{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">CREATE REQUEST</p><h1>Tạo yêu cầu bảo trì</h1><p class="muted">Biểu mẫu gửi dữ liệu từ giao diện qua Flask vào MySQL.</p></div></section>
+<section class="panel form-panel">
+  {% if contracts %}
+  <form method="post" class="data-form">
+    <label for="contract_id">Hợp đồng đang hiệu lực <span>*</span></label>
+    <select id="contract_id" name="contract_id" required>
+      <option value="">-- Chọn hợp đồng / bất động sản / khách thuê --</option>
+      {% for c in contracts %}<option value="{{ c.contract_id }}">HĐ #{{ c.contract_id }} · BĐS #{{ c.property_id }} – {{ c.property_title }} · {{ c.tenant_name }} (ID {{ c.tenant_id }})</option>{% endfor %}
+    </select>
+    <p class="field-help">Danh sách được lấy từ LEASE_CONTRACT với contract_status = 'Active'. Ứng dụng tự lấy property_id và tenant_id theo hợp đồng đã chọn.</p>
+    <label for="description">Mô tả sự cố <span>*</span></label>
+    <textarea id="description" name="description" maxlength="255" rows="4" required placeholder="Ví dụ: Rò rỉ đường ống nước tại phòng vệ sinh..."></textarea>
+    <label for="estimated_cost">Chi phí dự kiến (VNĐ) <span>*</span></label>
+    <input id="estimated_cost" name="estimated_cost" type="number" min="0" max="9999999999.99" step="0.01" value="0" required>
+    <div class="form-actions"><button class="button" type="submit">Lưu yêu cầu bảo trì</button><a class="button secondary" href="{{ url_for('maintenance_list') }}">Hủy</a></div>
+  </form>
+  {% else %}<p class="empty">Không có hợp đồng Active để tạo yêu cầu bảo trì. Hãy kiểm tra dữ liệu trong LEASE_CONTRACT.</p>{% endif %}
+</section>
+{% endblock %}

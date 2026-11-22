@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Bất động sản | Real Estate Ledger{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">PROPERTY LISTING</p><h1>Bất động sản đang sẵn sàng</h1><p class="muted">Dữ liệu lấy từ View <code>vw_available_properties</code>.</p></div></section>
+<section class="panel">
+  <form class="search-form" method="get"><input name="q" value="{{ keyword }}" placeholder="Tìm theo tên hoặc địa chỉ..."><button class="button" type="submit">Tìm kiếm</button>{% if keyword %}<a class="button secondary" href="{{ url_for('properties') }}">Xóa lọc</a>{% endif %}</form>
+  {% if properties %}<div class="table-wrap"><table><thead><tr><th>Mã</th><th>Bất động sản</th><th>Địa chỉ</th><th>Giá thuê/tháng</th><th>Chủ nhà</th><th>Liên hệ</th></tr></thead><tbody>{% for p in properties %}<tr><td>#{{ p.property_id }}</td><td><b>{{ p.property_title }}</b><br><span class="status green">{{ p.current_state }}</span></td><td>{{ p.property_address }}</td><td class="money">{{ p.rental_price|vnd }}</td><td>{{ p.landlord_name }}</td><td>{{ p.landlord_phone }}<br><small>{{ p.landlord_email }}</small></td></tr>{% endfor %}</tbody></table></div><p class="table-note">Hiển thị tối đa 100 bất động sản phù hợp.</p>{% else %}<p class="empty">Không tìm thấy bất động sản phù hợp.</p>{% endif %}
+</section>
+{% endblock %}

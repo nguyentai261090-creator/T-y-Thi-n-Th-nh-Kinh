@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Yêu cầu bảo trì | Real Estate Ledger{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">MAINTENANCE MANAGEMENT</p><h1>Yêu cầu bảo trì</h1><p class="muted">Danh sách đọc từ bảng <code>MAINTENANCE_REQUEST</code>.</p></div><a class="button" href="{{ url_for('maintenance_new') }}">＋ Tạo yêu cầu</a></section>
+<section class="panel">
+ {% if requests %}<div class="table-wrap"><table><thead><tr><th>Mã</th><th>Bất động sản</th><th>Khách thuê</th><th>Mô tả</th><th>Dự kiến</th><th>Thực tế</th><th>Trạng thái</th><th>Người phụ trách</th></tr></thead><tbody>{% for r in requests %}<tr><td>#{{ r.request_id }}</td><td>{{ r.property_title }}</td><td>{{ r.tenant_name }}</td><td>{{ r.description }}</td><td>{{ r.estimated_cost|vnd }}</td><td>{{ r.actual_cost|vnd }}</td><td><span class="status">{{ r.request_status }}</span></td><td>{{ r.manager_name or 'Chưa phân công' }}</td></tr>{% endfor %}</tbody></table></div><p class="table-note">Hiển thị tối đa 100 yêu cầu mới nhất.</p>{% else %}<p class="empty">Chưa có yêu cầu bảo trì.</p>{% endif %}
+</section>
+{% endblock %}
