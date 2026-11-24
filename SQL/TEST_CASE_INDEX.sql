@@ -2,7 +2,7 @@
 -- FILE: TEST_CASE_INDEX.sql
 -- ============================================================================
 
-USE real_estate_ledger_db; 
+USE real_estate_ledger;
 
 -- Test case 1: Tìm bất động sản theo trạng thái và giá thuê 
 EXPLAIN ANALYZE

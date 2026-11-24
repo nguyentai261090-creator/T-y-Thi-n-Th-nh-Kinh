@@ -1,4 +1,4 @@
-USE real_estate_ledger_db;
+USE real_estate_ledger;
 
 -- 1. Covering Index: Tìm kiếm nhà trống theo khung giá (tránh Key Lookup về bảng gốc)
 DROP INDEX idx_property_state_price ON PROPERTY;
