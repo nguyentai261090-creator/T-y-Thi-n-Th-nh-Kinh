@@ -23,7 +23,7 @@ TRUNCATE TABLE AP;
 TRUNCATE TABLE USERS;
 SET FOREIGN_KEY_CHECKS = 1;
 
--- 2. Tạo bảng chuỗi số tạm (1 -> 10.000) bằng CROSS JOIN (Tương thích 100% mọi bản MySQL)
+-- 2. Tạo bảng chuỗi số tạm (1 -> 10.000) 
 DROP TEMPORARY TABLE IF EXISTS tmp_seq;
 CREATE TEMPORARY TABLE tmp_seq (n INT PRIMARY KEY);
 
