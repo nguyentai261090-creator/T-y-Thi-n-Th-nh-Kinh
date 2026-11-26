@@ -3,7 +3,15 @@ USE real_estate_ledger;
 -- 1. Covering Index: Tìm kiếm nhà trống theo khung giá (tránh Key Lookup về bảng gốc)
 DROP INDEX idx_property_state_price ON PROPERTY;
 CREATE INDEX idx_property_state_price
+<<<<<<< HEAD
     ON PROPERTY (current_state, rental_price, property_id);
+=======
+ON PROPERTY (
+    current_state,
+    rental_price,
+    property_id
+);
+>>>>>>> c614eba6129a6af14141b034dc4055bb26275de5
 
 -- 2. Kiểm tra hợp đồng hiệu lực (Active) theo bất động sản (BR4)
 DROP INDEX idx_lease_property_status ON LEASE_CONTRACT;
